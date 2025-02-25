@@ -18,7 +18,7 @@ const Carousel = ({ images, onSlideChange }) => {
   };
 
   return (
-    <div className="relative w-full max-w-lg mx-auto">
+    <div className="relative w-[70%] mx-auto">
       <div className="overflow-hidden rounded-lg">
         <div
           className="flex transition-transform duration-500 ease-in-out"
@@ -29,7 +29,7 @@ const Carousel = ({ images, onSlideChange }) => {
               <img
                 src={image}
                 alt={`Slide ${index}`}
-                className="w-full h-64 object-cover"
+                className="w-full h-[380px] object-cover"
               />
             </div>
           ))}
