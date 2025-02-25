@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 
-const Carousel = ({ images }) => {
+const Carousel = ({ images, onSlideChange }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const goToPrevious = () => {
     const isFirstImage = currentIndex === 0;
     const newIndex = isFirstImage ? images.length - 1 : currentIndex - 1;
     setCurrentIndex(newIndex);
+    onSlideChange(newIndex); // Notify parent of the change
   };
 
   const goToNext = () => {
     const isLastImage = currentIndex === images.length - 1;
     const newIndex = isLastImage ? 0 : currentIndex + 1;
     setCurrentIndex(newIndex);
+    onSlideChange(newIndex); // Notify parent of the change
   };
 
   return (
@@ -51,9 +53,12 @@ const Carousel = ({ images }) => {
         {images.map((_, index) => (
           <button
             key={index}
-            onClick={() => setCurrentIndex(index)}
+            onClick={() => {
+              setCurrentIndex(index);
+              onSlideChange(index); // Notify parent of the change
+            }}
             className={`w-3 h-3 rounded-full ${
-              currentIndex === index ? '' : ''
+              currentIndex === index ? 'bg-white' : 'bg-gray-500'
             }`}
           ></button>
         ))}
